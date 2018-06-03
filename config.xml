@@ -37,5 +37,6 @@
         <icon height="100" src="res/icon/ios/Icon-Small-50@2x.png" width="100" />
     </platform>
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
