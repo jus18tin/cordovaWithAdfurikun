@@ -32,15 +32,51 @@ var app = {
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        var button = document.getElementById("initAdfurikun");
+        button.addEventListener("click", initAdfurikun);
+        
+        var showRewardAd = document.getElementById("showReward");
+        showRewardAd.addEventListener("click", showReward);
     }
 };
 
 app.initialize();
+
+function initAdfurikun() {
+    cordova.exec(onInitSuccess,
+                 onInitFail,
+                 "adfurikun",
+                 "initWithAppID",
+                 ["587448b42e3495fa11000d61"]);
+}
+
+function onInitSuccess() {
+    alert("ready to showAd");
+}
+
+function onInitFail(message) {
+    alert('Failed because: ' + message);
+}
+
+function showReward() {
+    cordova.exec(onShowAdSuccess,
+                 onShowAdFail,
+                 "adfurikun",
+                 "showReward",
+                 ["587448b42e3495fa11000d61"]);
+}
+
+function onShowAdSuccess() {
+    alert("did show reward");
+    
+    cordova.exec(onInitSuccess,
+                 onInitFail,
+                 "adfurikun",
+                 "resetInitCallbackId",
+                 ["587448b42e3495fa11000d61"]);
+}
+
+function onShowAdFail(message) {
+    alert('Failed because: ' + message);
+}
+

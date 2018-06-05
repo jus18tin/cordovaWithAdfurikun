@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordoba-plugin-adfurikun" version="0.1.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>adfurikun</name>
+    <description>Adfurikun Plugin</description>
+    <js-module name="adfurikun" src="www/adfurikun.js">
+        <clobbers target="cordova.plugins.adfurikun" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="adfurikun">
+                <param name="ios-package" value="CDVAdfurikun"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        
+        <header-file src="src/ios/CDVAdfurikun.h" />
+        <source-file src="src/ios/CDVAdfurikun.m" />
+        
+        <!-- adfurikun core -->
+        <framework src="src/ios/ADFMovieReward.framework" custom="true" compiler-flags="-ObjC"/>
+        <framework src="AdSupport.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="CoreMedia.framework"/>
+        <framework src="CoreTelephony.framework"/>
+        <framework src="MediaPlayer.framework"/>
+        <framework src="StoreKit.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="UIKit.framework"/>
+        <framework src="WebKit.framework"/>
+        
+        <!-- nend -->
+        <framework src="src/ios/adnetworks/NendAd/NendAd.embeddedframework/NendAd.framework" custom="true" />
+        <resource-file src="src/ios/adnetworks/NendAd/NendAd.embeddedframework/NendAd.framework/Resources/NendAdResource.bundle"/>
+        <header-file src="src/ios/adnetworks/NendAd/MovieReward6009.h" />
+        <source-file src="src/ios/adnetworks/NendAd/MovieReward6009.m" />
+        <header-file src="src/ios/adnetworks/NendAd/MovieInterstitial6009.h" />
+        <source-file src="src/ios/adnetworks/NendAd/MovieInterstitial6009.m" />
+        <framework src="CoreLocation.framework"/>
+        <framework src="CoreMotion.framework"/>
+        <framework src="ImageIO.framework"/>
+        <framework src="Security.framework"/>
+        
+    </platform>
+</plugin>
