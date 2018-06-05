@@ -39,4 +39,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <engine name="ios" spec="^4.5.4" />
+    <plugin name="cordoba-plugin-adfurikun" spec="/Users/junhua.li/sdkTeam/cordova/adfurikun" />
 </widget>

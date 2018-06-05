@@ -32,22 +32,51 @@ var app = {
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var button = document.getElementById("camera");
-        button.addEventListener("click", openCamera);
+        var button = document.getElementById("initAdfurikun");
+        button.addEventListener("click", initAdfurikun);
+        
+        var showRewardAd = document.getElementById("showReward");
+        showRewardAd.addEventListener("click", showReward);
     }
 };
 
 app.initialize();
 
-function openCamera() {
-    navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+function initAdfurikun() {
+    cordova.exec(onInitSuccess,
+                 onInitFail,
+                 "adfurikun",
+                 "initWithAppID",
+                 ["587448b42e3495fa11000d61"]);
 }
 
-function onSuccess(imageURI) {
-    var image = document.getElementById('myImage');
-    image.src = imageURI;
+function onInitSuccess() {
+    alert("ready to showAd");
 }
 
-function onFail(message) {
+function onInitFail(message) {
     alert('Failed because: ' + message);
 }
+
+function showReward() {
+    cordova.exec(onShowAdSuccess,
+                 onShowAdFail,
+                 "adfurikun",
+                 "showReward",
+                 ["587448b42e3495fa11000d61"]);
+}
+
+function onShowAdSuccess() {
+    alert("did show reward");
+    
+    cordova.exec(onInitSuccess,
+                 onInitFail,
+                 "adfurikun",
+                 "resetInitCallbackId",
+                 ["587448b42e3495fa11000d61"]);
+}
+
+function onShowAdFail(message) {
+    alert('Failed because: ' + message);
+}
+
